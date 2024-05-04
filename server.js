@@ -9,6 +9,7 @@ const transactionRouter = require("./routes/transactionRoute");
 const errorHandler = require("./middlewares/errorHandler");
 require("./config/dbConnect");
 
+
 // ! Middlewares
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'/public')));
@@ -23,7 +24,7 @@ app.use("/api/v1/transaction",transactionRouter);
 
 // Catch-all route to serve React's index.html
 app.get("*", (req, res) => {
-    res.sendFile(path.join('C:\Download\PROJECTS\Expenses Tracker App','/Expenses Tracker Frontend/build/index.html'));
+    res.sendFile(path.join('C:/Download/PROJECTS/Expenses Tracker App','/Expenses Tracker Frontend/build/index.html'));
   });
 
 // TODO : Error Handler
