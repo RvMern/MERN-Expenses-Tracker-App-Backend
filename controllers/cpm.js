@@ -1,5 +1,7 @@
 const Chiller = require("../models/ChillerModel.js");
+const passError = require("../utils/error");
 const mongoose = require("mongoose");
+
 
 const getChillerData = async(req,res,next) => {
     try{
@@ -38,7 +40,7 @@ const createChillerData = async(req,res,next) => {
                 newUser
             });
         }
-        next(passError(400,"User Already Exists"));
+        next(passError(400,"Chiller Data Already Exists"));
     }
     catch(err){
         next(passError(500,err.message));
