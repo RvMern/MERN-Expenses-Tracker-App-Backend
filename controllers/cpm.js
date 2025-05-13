@@ -1,19 +1,17 @@
-
+const Chiller = require("../models/ChillerModel.js");
+const mongoose = require("mongoose");
 
 const getChiller = async(req,res,next) => {
     try{
-        const acconntID = req.params.id;
-        const findAccount = await Account.findById(acconntID).populate('transactions');
-        if(!findAccount){
-            return next(passError(404,"Unable to find! Invalid Account ID"));
-        }
+        const chillerID = req.params.id;
+        const chillerData = await Chiller.find({ id: chillerID });
         res.status(200).json({
             success:true,
-            Account:findAccount
+            chillerData
         });
     }
     catch(err){
-        next(passError(500,err.message));
+        console.log('Unable to find the data of chiller with specified id');
     }
 }
 
