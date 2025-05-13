@@ -13,7 +13,7 @@ const getChillerData = async(req,res,next) => {
         });
     }
     catch(err){
-        console.log('Unable to find the data of chiller with specified id');
+        return next(passError(400,"Unable to find the data of chiller with specified id"));
     }
 }
 
@@ -21,7 +21,7 @@ const createChillerData = async(req,res,next) => {
     try{
         const {id, dataname, setpoint,load,rangeMin,rangeMax, status} = req.body;
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "", status == ""){
-            console.log("All fields are required");
+            return next(passError(404,"All fields are required"));
         }
         const foundChiller = await Chiller.findOne({id:id});
         if(!foundChiller){
@@ -52,7 +52,7 @@ const updateChillerData = async(req,res,next) => {
         const chillerID = req.params.id;
         const {id, dataname, setpoint,load,rangeMin,rangeMax, status} = req.body;
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "", status == ""){
-            console.log("All fields are required");
+            return next(passError(404,"All fields are required"));
         }
         const updatedChiller = await Chiller.findByIdAndUpdate(chillerID,req.body);
         if(!updatedChiller){
