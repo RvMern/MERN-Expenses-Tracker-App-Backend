@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const chillerSchema = new mongoose.Schema({
+  id:{
+    type: Number,
+    required: true
+  },
   dataname: {
     type: String,
     required: true
