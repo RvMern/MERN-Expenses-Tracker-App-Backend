@@ -55,7 +55,7 @@ const updateChillerData = async(req,res,next) => {
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
-        const findChiller = await Chiller.findById(chillerID);
+        const findChiller = await Chiller.findOne({id:chillerID});
         if(!findChiller){
             return next(passError(500,"You are trying to update something which does not exist"));
         }
