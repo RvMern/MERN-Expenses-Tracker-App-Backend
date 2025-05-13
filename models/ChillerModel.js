@@ -13,7 +13,7 @@ const chillerSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  loadpercent: {
+  load: {
     type: Number,
     required: true
   },
