@@ -50,7 +50,7 @@ const createChillerData = async(req,res,next) => {
 
 const updateChillerData = async(req,res,next) => {
     try{
-        const chillerID = req.params.id;
+        const chillerID = req.params._id;
         console.log(chillerId);
         const {id, dataname, setpoint,load,rangeMin,rangeMax,tmp, status} = req.body;
         console.log(req.body);
