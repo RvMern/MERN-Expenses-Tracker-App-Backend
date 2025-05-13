@@ -13,6 +13,11 @@ const chillerSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  fanStatus: {
+    type: Boolean,
+    default: true,
+    required: true
+  },
   load: {
     type: Number,
     required: true
