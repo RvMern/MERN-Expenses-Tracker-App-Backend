@@ -37,7 +37,7 @@ const createChillerData = async(req,res,next) => {
             return res.status(200).json({
                 success:true,
                 message: "Chiller Data Has Been Created Successfully",
-                newUser
+                newChiller
             });
         }
         next(passError(400,"Chiller Data Already Exists"));
