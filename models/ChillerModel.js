@@ -20,7 +20,7 @@ const chillerSchema = new mongoose.Schema({
   tmp: {
     type: Number,
     required: true
-  }
+  },
   rangeMin: {
     type: Number, // e.g., 1
     required: true
