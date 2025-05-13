@@ -50,17 +50,16 @@ const createChillerData = async(req,res,next) => {
 
 const updateChillerData = async(req,res,next) => {
     try{
-        const chillerID = req.params._id;
-        console.log(chillerId);
+        const chillerID = req.params.id;
         const {id, dataname, setpoint,load,rangeMin,rangeMax,tmp, status} = req.body;
-        console.log(req.body);
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
-        const updatedChiller = await Chiller.findByIdAndUpdate(chillerID,req.body);
-        if(!updatedChiller){
-            return next(passError(500,"Updation Failed! Try Again After Few Minutes"));
+        const findChiller = await Chiller.find({id:chillerID});
+        if(!findChiller){
+            return next(passError(500,"You are trying to update something which does not exist"));
         }
+        const updatedChiller = await Chiller.updateOne(req.body);
         res.status(200).json({
             success:true,
             message:"Chiller Updation Went Successfully",
