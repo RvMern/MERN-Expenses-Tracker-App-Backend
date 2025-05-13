@@ -19,8 +19,8 @@ const getChillerData = async(req,res,next) => {
 
 const createChillerData = async(req,res,next) => {
     try{
-        const {id, dataname, setpoint,load,rangeMin,rangeMax, status} = req.body;
-        if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "", status == ""){
+        const {id, dataname, setpoint,load,rangeMin,rangeMax,tmp, status} = req.body;
+        if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
         const foundChiller = await Chiller.findOneAndUpdate({id:id});
@@ -29,6 +29,7 @@ const createChillerData = async(req,res,next) => {
                 id,
                 dataname,
                 setpoint,
+                tmp,
                 load,
                 rangeMin,
                 rangeMax,
@@ -51,9 +52,9 @@ const updateChillerData = async(req,res,next) => {
     try{
         const chillerID = req.params.id;
         console.log(chillerId);
-        const {id, dataname, setpoint,load,rangeMin,rangeMax, status} = req.body;
+        const {id, dataname, setpoint,load,rangeMin,rangeMax,tmp, status} = req.body;
         console.log(req.body);
-        if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "", status == ""){
+        if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
         const updatedChiller = await Chiller.findByIdAndUpdate(chillerID,req.body);
