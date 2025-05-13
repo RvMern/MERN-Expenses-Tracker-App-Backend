@@ -1,10 +1,9 @@
 const express = require("express");
-// const { registerUser, loginUser, getUserProfile, updateUserProfileDetails, updateUserPassword, deleteUser, logoutUser } = require("../controllers/userCtrl");
-// const isLoggedIn = require("../middlewares/isLoggedIn");
+const { createChillerData, getChillerData, updateChillerData } = require("../controllers/cpm");
 const route = express.Router();
 
-route.post('/chiller', registerUser);
-route.put('/updatechiller/:id', registerUser);
-route.get('/chiller/:id', getUserProfile);
+route.post('/chiller',createChillerData);
+route.put('/updatechiller/:id', updateChillerData);
+route.get('/chiller/:id', getChillerData );
 
 module.exports = route
