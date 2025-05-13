@@ -23,8 +23,6 @@ const createChillerData = async(req,res,next) => {
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", fanStatus == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
-        const foundChiller = await Chiller.find({id:id});
-        if(!foundChiller){
             const newChiller = await Chiller.create({
                 id,
                 dataname,
@@ -42,7 +40,6 @@ const createChillerData = async(req,res,next) => {
                 newChiller
             });
         }
-        next(passError(400,"Chiller Data Already Exists"));
     }
     catch(err){
         next(passError(500,err.message));
