@@ -46,3 +46,9 @@ const createChillerData = async(req,res,next) => {
         next(passError(500,err.message));
     }
 }
+
+
+module.exports = {
+    getChillerData,
+    createChillerData
+}
