@@ -47,6 +47,29 @@ const createChillerData = async(req,res,next) => {
     }
 }
 
+const updateChillerData = async(req,res,next) => {
+    try{
+        const chillerID = req.params.id;
+        const {id, dataname, setpoint,loadpercent,rangeMin,rangeMax, status} = req.body;
+        if(id == "", dataname == "", setpoint == "",loadpercent == "",rangeMin == "",rangeMax == "", status == ""){
+            console.log("All fields are required");
+        }
+        const updatedChiller = await Chiller.findByIdAndUpdate(chillerID,req.body);
+        if(!updatedChiller){
+            return next(passError(500,"Updation Failed! Try Again After Few Minutes"));
+        }
+        res.status(200).json({
+            success:true,
+            message:"Chiller Updation Went Successfully",
+            updatedChiller
+        });
+    }
+    catch(err){
+        next(passError(500,err.message));
+    }
+}
+
+
 
 module.exports = {
     getChillerData,
