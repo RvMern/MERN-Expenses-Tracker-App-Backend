@@ -17,22 +17,24 @@ const getChillerData = async(req,res,next) => {
 
 const createChillerData = async(req,res,next) => {
     try{
-        const {id, email, password} = req.body;
-        if(fullname === "" || email === "" || password === ""){
-            return next(passError(400,"All fields are required"));
+        const {id, dataname, setpoint,loadpercent,rangeMin,rangeMax, status} = req.body;
+        if(id == "", dataname == "", setpoint == "",loadpercent == "",rangeMin == "",rangeMax == "", status == ""){
+            console.log("All fields are required");
         }
-        const profilePhoto = req.file ? req.file.path : undefined;
-        const foundUser = await User.findOne({email});
-        if(!foundUser){
-            const newUser = await User.create({
-                fullname,
-                email,
-                profileImage: profilePhoto,
-                password
+        const foundChiller = await Chiller.findOne({id:id});
+        if(!foundChiller){
+            const newChiller = await Chiller.create({
+                id,
+                dataname,
+                setpoint,
+                loadpercent,
+                rangeMin,
+                rangeMax,
+                status
             });
             return res.status(200).json({
                 success:true,
-                message: "New User Has Been Created Successfully",
+                message: "Chiller Data Has Been Created Successfully",
                 newUser
             });
         }
