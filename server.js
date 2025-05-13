@@ -6,6 +6,7 @@ require("dotenv").config();
 const userRouter = require("./routes/userRoute");
 const accountRouter = require("./routes/accountRoute");
 const transactionRouter = require("./routes/transactionRoute");
+const chillerRouter = require("./routes/cpmRoute");
 const errorHandler = require("./middlewares/errorHandler");
 require("./config/dbConnect");
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use("/api/v1/user",userRouter);
 app.use("/api/v1/account",accountRouter);
 app.use("/api/v1/transaction",transactionRouter);
+app.use("/api/v1/chillers",chillerRouter);
 
 // Catch-all route to serve React's index.html
 app.get("*", (req, res) => {
