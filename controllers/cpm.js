@@ -20,9 +20,9 @@ const getChillerData = async(req,res,next) => {
 const createChillerData = async(req,res,next) => {
     try{
         const {id, dataname, setpoint,load,rangeMin,rangeMax,tmp, fanStatus, status} = req.body;
-        if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", fanStatus == "", status == ""){
-            return next(passError(404,"All fields are required"));
-        }
+        // if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", fanStatus == "", status == ""){
+        //     return next(passError(404,"All fields are required"));
+        // }
             const newChiller = await Chiller.create({
                 id,
                 dataname,
@@ -40,7 +40,6 @@ const createChillerData = async(req,res,next) => {
                 newChiller
             });
         }
-    }
     catch(err){
         next(passError(500,err.message));
     }
