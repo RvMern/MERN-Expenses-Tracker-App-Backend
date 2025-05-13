@@ -1,5 +1,5 @@
 const express = require("express");
-const { createChillerData, getChillerData, updateChillerData } = require("../controllers/cpm");
+const { createChillerData, getChillerData, updateChillerData } = require("../controllers/cpm.js");
 const route = express.Router();
 
 route.post('/chiller',createChillerData);
