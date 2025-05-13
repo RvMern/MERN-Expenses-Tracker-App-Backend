@@ -23,7 +23,7 @@ const createChillerData = async(req,res,next) => {
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
-        const foundChiller = await Chiller.findOne({id:id});
+        const foundChiller = await Chiller.findOneAndUpdate({id:id});
         if(!foundChiller){
             const newChiller = await Chiller.create({
                 id,
