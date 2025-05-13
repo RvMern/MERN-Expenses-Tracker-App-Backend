@@ -50,7 +50,9 @@ const createChillerData = async(req,res,next) => {
 const updateChillerData = async(req,res,next) => {
     try{
         const chillerID = req.params.id;
+        console.log(chillerId);
         const {id, dataname, setpoint,load,rangeMin,rangeMax, status} = req.body;
+        console.log(req.body);
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
