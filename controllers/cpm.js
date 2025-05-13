@@ -50,5 +50,6 @@ const createChillerData = async(req,res,next) => {
 
 module.exports = {
     getChillerData,
-    createChillerData
+    createChillerData,
+    updateChillerData
 }
