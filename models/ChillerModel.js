@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
 
 const chillerSchema = new mongoose.Schema({
   dataname: {
