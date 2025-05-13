@@ -55,11 +55,15 @@ const updateChillerData = async(req,res,next) => {
         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", status == ""){
             return next(passError(404,"All fields are required"));
         }
-        const findChiller = await Chiller.findById(chillerID);
+        const findChiller = await Chiller.findOne({ id: chillerID });
         if(!findChiller){
             return next(passError(500,"You are trying to update something which does not exist"));
         }
-        const updatedChiller = await Chiller.findByIdAndUpdate(chillerID,req.body);
+        const updatedChiller = await Chiller.findOneAndUpdate(
+            { id: chillerID }, // search by custom field
+            req.body,
+            { new: true } // return updated doc
+        );
         res.status(200).json({
             success:true,
             message:"Chiller Updation Went Successfully",
@@ -70,8 +74,6 @@ const updateChillerData = async(req,res,next) => {
         next(passError(500,err.message));
     }
 }
-
-
 
 module.exports = {
     getChillerData,
