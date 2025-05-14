@@ -64,68 +64,13 @@ const createChillerData = async(req,res,next) => {
     }
 }
 
-// const updateChillerData = async(req,res,next) => {
-//     try{
-//         const chillerID = req.params.id;
-//         const {id, dataname, setpoint,load,rangeMin,rangeMax,tmp,fanStatus, status} = req.body;
-//         if(id == "", dataname == "", setpoint == "",load == "",rangeMin == "",rangeMax == "",tmp == "", fanStatus == "", status == ""){
-//             return next(passError(404,"All fields are required"));
-//         }
-//         const findChiller = await Chiller.findById(chillerID);
-//         if(!findChiller){
-//             return next(passError(500,"You are trying to update something which does not exist"));
-//         }
-//         const updatedChiller = await Chiller.findByIdAndUpdate(chillerID,req.body,{ new: true });
-//         res.status(200).json({
-//             success:true,
-//             message:"Chiller Updation Went Successfully",
-//             updatedChiller
-//         });
-//     }
-//     catch(err){
-//         next(passError(500,err.message));
-//     }
-// }
-
-
 const updateChillerData = async (req, res, next) => {
     try {
         const chillerID = req.params.id;
-        // const {id, dataname, setpoint, load, rangeMin, rangeMax, tmp, fanStatus, status} = req.body;
-
-        // Check if at least one field is provided
-        // if (
-        //     id === undefined &&
-        //     dataname === undefined &&
-        //     setpoint === undefined &&
-        //     load === undefined &&
-        //     rangeMin === undefined &&
-        //     rangeMax === undefined &&
-        //     tmp === undefined &&
-        //     fanStatus === undefined &&
-        //     status === undefined
-        // ) {
-        //     return next(passError(400, "At least one field is required to update"));
-        // }
-
         const findChiller = await Chiller.findById(chillerID);
         if (!findChiller) {
             return next(passError(404, "Chiller not found"));
         }
-
-        // Build an object with only the provided fields
-        // const updateFields = {};
-        // if (id !== undefined) updateFields.id = id;
-        // if (dataname !== undefined) updateFields.dataname = dataname;
-        // if (setpoint !== undefined) updateFields.setpoint = setpoint;
-        // if (load !== undefined) updateFields.load = load;
-        // if (rangeMin !== undefined) updateFields.rangeMin = rangeMin;
-        // if (rangeMax !== undefined) updateFields.rangeMax = rangeMax;
-        // if (tmp !== undefined) updateFields.tmp = tmp;
-        // if (fanStatus !== undefined) updateFields.fanStatus = fanStatus;
-        // if (status !== undefined) updateFields.status = status;
-
-        // const updatedChiller = await Chiller.findByIdAndUpdate(chillerID, updateFields, { new: true });
         const updatedChiller = await Chiller.findByIdAndUpdate(chillerID, req.body, { new: true });
         res.status(200).json({
             success: true,
