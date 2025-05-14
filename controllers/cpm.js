@@ -7,7 +7,7 @@ const getChillerData = async(req,res,next) => {
     try{
         const chillerID = req.params.id;
         const chillerData = await Chiller.find({ id: chillerID });
-        if (!chillerData){
+        if (chillerData.length == 0){
             return next(passError(400,"The chiller with specified id does not exist"));
         }
         res.status(200).json({
