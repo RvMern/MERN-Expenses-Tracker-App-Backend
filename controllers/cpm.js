@@ -3,6 +3,22 @@ const passError = require("../utils/error");
 const mongoose = require("mongoose");
 
 
+const getAllChillersData = async(req,res,next) => {
+    try{
+        const chillersData = await Chiller.find();
+        if (chillersData.length == 0){
+            return next(passError(400,"No Chiller Data exist"));
+        }
+        res.status(200).json({
+            success:true,
+            chillersData
+        });
+    }
+    catch(err){
+        return next(passError(500,err.message));
+    }
+}
+
 const getChillerData = async(req,res,next) => {
     try{
         const chillerID = req.params.id;
@@ -74,5 +90,6 @@ const updateChillerData = async(req,res,next) => {
 module.exports = {
     getChillerData,
     createChillerData,
-    updateChillerData
+    updateChillerData,
+    getAllChillersData
 }
